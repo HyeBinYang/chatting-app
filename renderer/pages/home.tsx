@@ -1,24 +1,20 @@
 import React from "react";
 import Head from "next/head";
-import { Theme, makeStyles, createStyles } from "@material-ui/core/styles";
-import Signup from "./signup";
-import Login from "./login";
+import Navbar from "../components/Navbar";
+import UserList from "../components/UserList";
 
-function Home() {
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(false);
-  const handleClick = () => setOpen(true);
-
+function main() {
   return (
     <React.Fragment>
       <Head>
-        <title>채팅 앱</title>
+        <title>메인</title>
       </Head>
       <div>
-        <Login />
+        <Navbar />
+        <UserList />
       </div>
     </React.Fragment>
   );
 }
 
-export default Home;
+export default main;

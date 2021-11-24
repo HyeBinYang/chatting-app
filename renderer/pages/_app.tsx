@@ -6,8 +6,10 @@ import { theme } from "../lib/theme";
 import type { AppProps } from "next/app";
 
 // CSS
+import "../styles/common.css";
 import "../styles/auth.css";
 import "../styles/Form.css";
+import "../styles/navbar.css";
 
 export default function (props: AppProps) {
   const { Component, pageProps } = props;
