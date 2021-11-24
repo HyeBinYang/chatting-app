@@ -10,6 +10,8 @@ import "../styles/common.css";
 import "../styles/auth.css";
 import "../styles/Form.css";
 import "../styles/navbar.css";
+import "../styles/UserList.css";
+import "../styles/User.css";
 
 export default function (props: AppProps) {
   const { Component, pageProps } = props;
