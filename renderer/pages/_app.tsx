@@ -1,7 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { ThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { theme } from "../lib/theme";
 import type { AppProps } from "next/app";
 
@@ -14,6 +12,7 @@ import "../styles/UserList.css";
 import "../styles/User.css";
 import "../styles/RoomInfo.css";
 import "../styles/RoomList.css";
+import "../styles/RoomForm.css";
 
 export default function (props: AppProps) {
   const { Component, pageProps } = props;
@@ -30,10 +29,7 @@ export default function (props: AppProps) {
       <Head>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Component {...pageProps} />
     </React.Fragment>
   );
 }

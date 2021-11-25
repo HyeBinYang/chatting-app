@@ -1,16 +1,17 @@
 import React from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
+import RoomForm from "../components/RoomForm";
 
 function make() {
   return (
     <React.Fragment>
       <Head>
-        <title>유저 목록</title>
+        <title>방 만들기</title>
       </Head>
       <div>
         <Navbar />
-        <h1>채팅방 만들기</h1>
+        <RoomForm />
       </div>
     </React.Fragment>
   );
