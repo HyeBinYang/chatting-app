@@ -6,7 +6,7 @@ function User() {
       <div className="user__image">
         <img className="user__image" src="https://picsum.photos/200" alt="profile" />
       </div>
-      <h1 className="user__name">username</h1>
+      <p className="user__name">username</p>
     </div>
   );
 }

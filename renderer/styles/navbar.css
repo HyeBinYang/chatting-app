@@ -29,7 +29,7 @@
   .menu:hover,
   .menu.active {
     color: #ffffff;
-    background-color: #b8b4b4;
+    background-color: #cfcece;
   }
 }
 
@@ -41,16 +41,16 @@
     background-color: #efefef;
     margin: 0;
     padding: 0;
-    width: 20%;
+    width: 120px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
   }
 
   .menu {
-    height: 100%;
+    display: inline;
+    height: 150px;
+    line-height: 150px;
     list-style-type: none;
     text-align: center;
     font-weight: 600;
@@ -60,6 +60,6 @@
   .menu:hover,
   .menu.active {
     color: #ffffff;
-    background-color: #b8b4b4;
+    background-color: #cfcece;
   }
 }

@@ -30,6 +30,8 @@
 
   .user__name {
     margin: 0;
+    font-size: 32px;
+    font-weight: bold;
   }
 }
 
@@ -59,5 +61,7 @@
 
   .user__name {
     margin: 0;
+    font-size: 28px;
+    font-weight: bold;
   }
 }
