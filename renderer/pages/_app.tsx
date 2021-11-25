@@ -12,6 +12,8 @@ import "../styles/Form.css";
 import "../styles/navbar.css";
 import "../styles/UserList.css";
 import "../styles/User.css";
+import "../styles/RoomInfo.css";
+import "../styles/RoomList.css";
 
 export default function (props: AppProps) {
   const { Component, pageProps } = props;

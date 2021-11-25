@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
+import RoomList from "../components/RoomList";
 
 function group() {
   return (
@@ -10,7 +11,7 @@ function group() {
       </Head>
       <div>
         <Navbar />
-        <h1>Group</h1>
+        <RoomList />
       </div>
     </React.Fragment>
   );

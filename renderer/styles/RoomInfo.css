@@ -1,0 +1,8 @@
+.room {
+  border: 1px solid #f0f0f0;
+  padding: 10px;
+}
+
+.room:hover {
+  background-color: #fdfcfc;
+}

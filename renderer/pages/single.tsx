@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
+import RoomList from "../components/RoomList";
 
 function single() {
   return (
@@ -10,7 +11,7 @@ function single() {
       </Head>
       <div>
         <Navbar />
-        <h1>1 대 1 채팅방</h1>
+        <RoomList />
       </div>
     </React.Fragment>
   );
