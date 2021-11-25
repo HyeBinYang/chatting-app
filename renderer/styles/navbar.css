@@ -18,6 +18,11 @@
     cursor: pointer;
   }
 
+  .menu > a {
+    text-decoration: none;
+    color: #000000;
+  }
+
   .menu:hover,
   .menu.active {
     color: #ffffff;

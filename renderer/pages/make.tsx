@@ -1,21 +1,19 @@
 import React from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
-import UserList from "../components/UserList";
-import Main from "../components/Main";
 
-function home() {
+function make() {
   return (
     <React.Fragment>
       <Head>
-        <title>메인</title>
+        <title>유저 목록</title>
       </Head>
       <div>
         <Navbar />
-        <Main />
+        <h1>채팅방 만들기</h1>
       </div>
     </React.Fragment>
   );
 }
 
-export default home;
+export default make;
