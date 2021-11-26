@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import UserList from "../components/UserList";
 
-interface Props {
-  isAuthenticated: boolean;
-  onNotAuthenticate: (props: void) => void;
-}
-
-function users({ isAuthenticated, onNotAuthenticate }: Props) {
+function users() {
   return (
     <React.Fragment>
       <Head>
         <title>유저 목록</title>
       </Head>
-      <Navbar onNotAuthenticate={onNotAuthenticate} />
+      <Navbar />
       <UserList />
     </React.Fragment>
   );

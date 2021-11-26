@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { logout } from "../helpers/auth";
+import { UserDispatch } from "../pages/_app";
+import { useRouter } from "next/router";
 
-interface Props {
-  onNotAuthenticate: (props: void) => void;
-}
+function Navbar() {
+  const router = useRouter();
+  const { state, dispatch } = useContext(UserDispatch);
 
-function Navbar({ onNotAuthenticate }: Props) {
-  const onHandleLogoutClick = async () => {
+  const onHandleLogoutClick = useCallback(async () => {
     await logout();
-    onNotAuthenticate();
-  };
+    dispatch({ type: "NOT AUTHENTICATE" });
+    router.push("/login");
+  }, []);
+
+  useEffect(() => {
+    if (!state.isAuthenticated) router.push("/login");
+  }, []);
 
   return (
     <ul id="nav">

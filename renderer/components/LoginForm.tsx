@@ -1,18 +1,18 @@
-import Router from "next/router";
-import React, { useCallback, useState } from "react";
+import Router, { useRouter } from "next/router";
+import React, { useCallback, useContext, useState } from "react";
 import { login } from "../helpers/auth";
 import Link from "./Link";
+import { UserDispatch } from "../pages/_app";
 
 interface LoginForm {
   email: string;
   password: string;
 }
 
-interface Props {
-  onAuthenticate: (props: void) => void;
-}
+function LoginForm() {
+  const { state, dispatch } = useContext(UserDispatch);
+  const router = useRouter();
 
-function LoginForm({ onAuthenticate }: Props) {
   const [form, setForm] = useState<LoginForm>({
     email: "",
     password: "",
@@ -38,7 +38,8 @@ function LoginForm({ onAuthenticate }: Props) {
       if (email !== "" && password !== "") {
         try {
           await login(email, password);
-          onAuthenticate();
+          dispatch({ type: "AUTHENTICATE", payload: { email } });
+          router.push("/users");
         } catch (error) {
           console.log(error);
         }

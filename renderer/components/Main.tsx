@@ -5,6 +5,7 @@ import UserList from "./UserList";
 
 function Main() {
   const router = useRouter();
+  console.log(router);
 
   return <div></div>;
 }
