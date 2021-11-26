@@ -1,7 +1,17 @@
 import React from "react";
 import Link from "next/link";
+import { logout } from "../helpers/auth";
 
-function Navbar() {
+interface Props {
+  onNotAuthenticate: (props: void) => void;
+}
+
+function Navbar({ onNotAuthenticate }: Props) {
+  const onHandleLogoutClick = async () => {
+    await logout();
+    onNotAuthenticate();
+  };
+
   return (
     <ul id="nav">
       <Link href="/users">
@@ -16,7 +26,9 @@ function Navbar() {
       <Link href="/make">
         <li className="menu">채팅방 만들기</li>
       </Link>
-      <li className="menu">로그아웃</li>
+      <li className="menu" onClick={onHandleLogoutClick}>
+        로그아웃
+      </li>
     </ul>
   );
 }

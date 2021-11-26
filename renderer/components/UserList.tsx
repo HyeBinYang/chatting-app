@@ -8,7 +8,6 @@ function UserList() {
       <User />
       <User />
       <User />
-      <User />
     </div>
   );
 }

@@ -13,8 +13,11 @@
   "dependencies": {
     "electron-serve": "^1.1.0",
     "electron-store": "^8.0.1",
+    "firebase": "^4.8.0",
     "react-icons": "^4.3.1",
-    "react-router-dom": "^6.0.2"
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.0.2",
+    "redux": "^4.1.2"
   },
   "devDependencies": {
     "@material-ui/core": "^4.12.3",

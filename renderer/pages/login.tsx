@@ -1,24 +1,18 @@
 import Head from "next/head";
 import React from "react";
-import Form from "../components/Form";
+import LoginForm from "../components/LoginForm";
 
-interface LoginForm {
-  id: string;
-  password: string;
+interface Props {
+  onAuthenticate: (props: void) => void;
 }
 
-function Login() {
-  const loginForm: LoginForm = {
-    id: "",
-    password: "",
-  };
-
+function Login({ onAuthenticate }: Props) {
   return (
     <div id="login">
       <Head>
         <title>로그인</title>
       </Head>
-      <Form loginForm={loginForm} />
+      <LoginForm onAuthenticate={onAuthenticate} />
     </div>
   );
 }
