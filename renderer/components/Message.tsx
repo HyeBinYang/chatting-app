@@ -1,6 +1,6 @@
 import React from "react";
 
-function Message() {
+function Message({ chat }) {
   return (
     <div className="Message">
       <div className="Message__left">
@@ -8,12 +8,12 @@ function Message() {
           <img src="https://picsum.photos/100" alt="" />
         </div>
         <div className="Message__content">
-          <p>message 1</p>
+          <p>{chat.message}</p>
         </div>
       </div>
       <div className="Message__right">
-        <span>username</span>
-        <span>시간</span>
+        <span>{chat.email}</span>
+        <span>{chat.timestamp}</span>
       </div>
     </div>
   );
