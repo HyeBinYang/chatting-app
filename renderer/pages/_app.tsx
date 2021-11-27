@@ -1,6 +1,5 @@
 import React, { useReducer } from "react";
 import Head from "next/head";
-import { theme } from "../lib/theme";
 import type { AppProps } from "next/app";
 
 // CSS

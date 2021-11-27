@@ -14,10 +14,6 @@ function Navbar() {
     router.push("/login");
   }, []);
 
-  useEffect(() => {
-    if (!state.isAuthenticated) router.push("/login");
-  }, []);
-
   return (
     <ul id="nav">
       <Link href="/users">

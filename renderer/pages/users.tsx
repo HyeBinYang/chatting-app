@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import UserList from "../components/UserList";
+import { auth, database } from "../services/firebase";
+import firebase from "firebase";
 
 function users() {
   return (

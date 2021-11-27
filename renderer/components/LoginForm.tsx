@@ -3,6 +3,7 @@ import React, { useCallback, useContext, useState } from "react";
 import { login } from "../helpers/auth";
 import Link from "./Link";
 import { UserDispatch } from "../pages/_app";
+import { auth } from "../services/firebase";
 
 interface LoginForm {
   email: string;
@@ -38,8 +39,13 @@ function LoginForm() {
       if (email !== "" && password !== "") {
         try {
           await login(email, password);
-          dispatch({ type: "AUTHENTICATE", payload: { email } });
-          router.push("/users");
+          await auth().setPersistence(auth.Auth.Persistence.SESSION);
+          auth().onAuthStateChanged((user) => {
+            if (user) {
+              router.push("/users");
+              dispatch({ type: "AUTHENTICATE", payload: { email } });
+            }
+          });
         } catch (error) {
           console.log(error);
         }

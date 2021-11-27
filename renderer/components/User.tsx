@@ -1,8 +1,7 @@
 import React from "react";
 
 interface User {
-  id: number;
-  username: string;
+  email: string;
 }
 
 interface Props {
@@ -15,7 +14,7 @@ function User({ user }: Props) {
       <div className="user__image">
         <img className="user__image" src="https://picsum.photos/200" alt="profile" />
       </div>
-      <p className="user__name">{user.username}</p>
+      <p className="user__name">{user.email}</p>
     </div>
   );
 }

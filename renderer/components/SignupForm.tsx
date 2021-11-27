@@ -1,6 +1,7 @@
 import Router from "next/router";
 import React, { useCallback, useState } from "react";
 import { signup } from "../helpers/auth";
+import { database } from "../services/firebase";
 import Link from "./Link";
 
 interface SignupForm {
@@ -36,6 +37,9 @@ function SignupForm() {
       if (email !== "" && password !== "" && passwordConfirm !== "" && password === passwordConfirm) {
         try {
           await signup(email, password);
+          database.ref("Users").push({
+            email,
+          });
           Router.push("/login");
         } catch (error) {
           console.log(error);
