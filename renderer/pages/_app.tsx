@@ -12,6 +12,13 @@ import "../styles/User.css";
 import "../styles/RoomInfo.css";
 import "../styles/RoomList.css";
 import "../styles/RoomForm.css";
+import "../styles/RoomHeader.css";
+import "../styles/RoomMain.css";
+import "../styles/RoomMembers.css";
+import "../styles/RoomMember.css";
+import "../styles/Messages.css";
+import "../styles/Message.css";
+import "../styles/InsertMessage.css";
 
 interface IState {
   isAuthenticated: boolean;

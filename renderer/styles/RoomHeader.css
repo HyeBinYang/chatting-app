@@ -1,0 +1,23 @@
+#RoomHeader {
+  background: skyblue;
+  padding: 20px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+}
+
+#RoomHeader > p {
+  flex: 1;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+#RoomHeader > span {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#RoomHeader > span:hover {
+  color: rgb(49, 179, 231);
+}

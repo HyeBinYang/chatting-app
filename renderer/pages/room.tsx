@@ -1,9 +1,12 @@
 import React from "react";
+import RoomHeader from "../components/RoomHeader";
+import RoomMain from "../components/RoomMain";
 
 function room() {
   return (
     <div>
-      <h1>Room</h1>
+      <RoomHeader />
+      <RoomMain />
     </div>
   );
 }

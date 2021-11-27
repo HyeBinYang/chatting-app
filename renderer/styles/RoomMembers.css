@@ -1,0 +1,30 @@
+#RoomMembers {
+  width: 250px;
+  height: calc(100vh - 130px);
+  background: #f5f4f4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+}
+
+.RoomMembers__title {
+  background-color: rgb(211, 229, 236);
+  width: 100%;
+  height: 40px;
+  padding-left: 15px;
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.RoomMembers__title > p {
+  margin: 0;
+}
+
+.RoomMembers__members {
+  height: calc(100vh - 170px);
+  display: flex;
+  flex-direction: column;
+}
