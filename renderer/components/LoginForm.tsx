@@ -1,4 +1,4 @@
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useCallback, useContext, useState } from "react";
 import { login } from "../helpers/auth";
 import Link from "./Link";
@@ -40,12 +40,14 @@ function LoginForm() {
         try {
           await login(email, password);
           await auth().setPersistence(auth.Auth.Persistence.SESSION);
-          auth().onAuthStateChanged((user) => {
-            if (user) {
-              router.push("/users");
-              dispatch({ type: "AUTHENTICATE", payload: { email } });
-            }
-          });
+          dispatch({ type: "AUTHENTICATE", payload: { email } });
+          router.push("/users");
+          // auth().onAuthStateChanged((user) => {
+          //   if (user) {
+          //     router.push("/users");
+          //     dispatch({ type: "AUTHENTICATE", payload: { email } });
+          //   }
+          // });
         } catch (error) {
           console.log(error);
         }
@@ -80,4 +82,4 @@ function LoginForm() {
   );
 }
 
-export default React.memo(LoginForm);
+export default LoginForm;

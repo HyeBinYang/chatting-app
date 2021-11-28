@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { database } from "../services/firebase";
 import { UserDispatch } from "../pages/_app";
+import router from "next/router";
 
 function RoomForm() {
   const [roomTitle, setRoomTitle] = useState("");
@@ -19,6 +20,11 @@ function RoomForm() {
 
     database.ref(`ChatRoom/${newChatRoom.key}/Members`).push({
       email: state.email,
+    });
+
+    router.push({
+      pathname: "/room/[rid]",
+      query: { rid: newChatRoom.key },
     });
   };
 

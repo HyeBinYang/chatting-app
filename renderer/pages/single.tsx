@@ -7,7 +7,7 @@ function single() {
   return (
     <React.Fragment>
       <Head>
-        <title>1 대 1 채팅방</title>
+        <title>채팅방 목록</title>
       </Head>
       <div>
         <Navbar />

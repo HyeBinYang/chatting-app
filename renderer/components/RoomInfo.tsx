@@ -1,11 +1,17 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useContext } from "react";
 import { database } from "../services/firebase";
+import { UserDispatch } from "../pages/_app";
 
 function RoomInfo({ room }) {
   const router = useRouter();
+  const { state, dispatch } = useContext(UserDispatch);
 
   const handleDoubleClick = () => {
+    database.ref(`ChatRoom/${room.rid}/Members`).push({
+      email: state.email,
+    });
+
     router.push({
       pathname: `/room/[rid]`,
       query: { rid: room.rid },

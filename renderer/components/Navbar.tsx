@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback } from "react";
+import React, { useContext, useCallback } from "react";
 import Link from "next/link";
 import { logout } from "../helpers/auth";
 import { UserDispatch } from "../pages/_app";

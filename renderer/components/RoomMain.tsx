@@ -2,10 +2,10 @@ import React from "react";
 import Messages from "./Messages";
 import RoomMembers from "./RoomMembers";
 
-function RoomMain({ members, messages }) {
+function RoomMain({ messages }) {
   return (
     <div id="RoomMain">
-      <RoomMembers members={members} />
+      <RoomMembers />
       <Messages messages={messages} />
     </div>
   );

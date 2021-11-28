@@ -29,7 +29,9 @@ function UserList() {
 
   return (
     <div id="userlist">
-      {users.length ? users.map((user: IUser) => <User user={user} key={user.email} />) : <h1>로딩중....</h1>}
+      {users.map((user: IUser) => (
+        <User user={user} key={user.email} />
+      ))}
     </div>
   );
 }

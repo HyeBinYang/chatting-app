@@ -2,37 +2,28 @@ import React, { useEffect, useState } from "react";
 import { database } from "../services/firebase";
 import RoomInfo from "./RoomInfo";
 
-function getRooms() {
-  let rooms = [];
-  database.ref("ChatRoom").on("value", (snapshot) => {
-    snapshot.forEach((row) => {
-      rooms.push({ ...row.val(), rid: row.key });
-      return false;
-    });
-  });
-  return rooms;
-}
-
 function RoomList() {
   const [rooms, setRooms] = useState([]);
 
-  const getChatList = () => {
-    const roomList = getRooms();
-    setRooms(roomList);
-  };
+  function getRooms() {
+    let newRooms = [];
+    database.ref("ChatRoom").on("value", (snapshot) => {
+      snapshot.forEach((row) => {
+        newRooms.push({ ...row.val(), rid: row.key });
+        return false;
+      });
+      setRooms(newRooms);
+    });
+  }
 
   useEffect(() => {
-    database.ref("ChatRoom").on("child_added", getChatList);
-    database.ref("ChatRoom").on("child_changed", getChatList);
-    database.ref("ChatRoom").on("child_removed", getChatList);
+    getRooms();
+    database.ref("ChatRoom").on("child_added", getRooms);
+    database.ref("ChatRoom").on("child_removed", getRooms);
   }, []);
 
   return (
-    <div id="roomlist">
-      {rooms.map((room, index) => (
-        <RoomInfo room={room} key={room.rid} />
-      ))}
-    </div>
+    <div id="roomlist">{rooms.map((room) => (room?.Members ? <RoomInfo room={room} key={room.rid} /> : null))}</div>
   );
 }
 

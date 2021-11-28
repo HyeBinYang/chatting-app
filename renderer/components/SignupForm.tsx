@@ -83,4 +83,4 @@ function SignupForm() {
   );
 }
 
-export default React.memo(SignupForm);
+export default SignupForm;
