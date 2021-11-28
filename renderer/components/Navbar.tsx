@@ -20,10 +20,7 @@ function Navbar() {
         <li className="menu">유저 목록</li>
       </Link>
       <Link href="/single">
-        <li className="menu">1 대 1 채팅방</li>
-      </Link>
-      <Link href="/group">
-        <li className="menu">단체 채팅방</li>
+        <li className="menu">채팅방 목록</li>
       </Link>
       <Link href="/make">
         <li className="menu">채팅방 만들기</li>

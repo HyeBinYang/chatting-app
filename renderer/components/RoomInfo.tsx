@@ -1,18 +1,24 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { database } from "../services/firebase";
 
-function RoomInfo() {
+function RoomInfo({ room }) {
   const router = useRouter();
 
   const handleDoubleClick = () => {
-    router.push("/room");
+    router.push({
+      pathname: `/room/[rid]`,
+      query: { rid: room.rid },
+    });
   };
 
   return (
     <div className="room" onDoubleClick={handleDoubleClick}>
-      <h1>방 제목</h1>
+      <h1>{room.title}</h1>
       <span>Member : </span>
-      <b>유저1</b>
+      {Object.keys(room.Members).map((memberKey) => (
+        <b>{room.Members[memberKey].email}</b>
+      ))}
     </div>
   );
 }

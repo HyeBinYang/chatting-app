@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { auth, database } from "../services/firebase";
 
 function sendMessage(data) {

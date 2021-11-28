@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 
@@ -19,6 +19,7 @@ import "../styles/RoomMember.css";
 import "../styles/Messages.css";
 import "../styles/Message.css";
 import "../styles/InsertMessage.css";
+import { auth } from "../services/firebase";
 
 interface IState {
   isAuthenticated: boolean;
@@ -54,6 +55,15 @@ export const UserDispatch = React.createContext(null);
 export default function (props: AppProps) {
   const { Component, pageProps } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    auth().onAuthStateChanged((user) => {
+      if (user) {
+        dispatch({ type: "AUTHENTICATE", payload: { email: user.email } });
+      }
+    });
+    console.log("sdd");
+  }, []);
 
   return (
     <React.Fragment>

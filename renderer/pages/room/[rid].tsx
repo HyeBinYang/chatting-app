@@ -1,6 +1,6 @@
 import React from "react";
-import RoomHeader from "../components/RoomHeader";
-import RoomMain from "../components/RoomMain";
+import RoomHeader from "../../components/RoomHeader";
+import RoomMain from "../../components/RoomMain";
 
 function room() {
   return (
