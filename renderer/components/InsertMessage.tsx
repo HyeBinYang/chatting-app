@@ -1,8 +1,9 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { auth, database } from "../services/firebase";
 
-function sendMessage(data) {
-  return database.ref("chats").push({
+function sendMessage(data, rid) {
+  return database.ref(`ChatRoom/${rid}/Messages`).push({
     message: data.message,
     timestamp: data.timestamp,
     email: data.email,
@@ -10,6 +11,8 @@ function sendMessage(data) {
 }
 
 function InsertMessage() {
+  const router = useRouter();
+
   const [message, setMessage] = useState<string>("");
 
   const onChange = (e) => setMessage(e.target.value);
@@ -18,11 +21,14 @@ function InsertMessage() {
     e.preventDefault();
 
     try {
-      await sendMessage({
-        message,
-        timestamp: Date.now(),
-        email: auth().currentUser.email,
-      });
+      await sendMessage(
+        {
+          message,
+          timestamp: Date.now(),
+          email: auth().currentUser.email,
+        },
+        router.query.rid
+      );
       setMessage("");
     } catch (error) {
       console.log(error);

@@ -2,11 +2,11 @@ import React from "react";
 import Messages from "./Messages";
 import RoomMembers from "./RoomMembers";
 
-function RoomMain() {
+function RoomMain({ members, messages }) {
   return (
     <div id="RoomMain">
-      <RoomMembers />
-      <Messages />
+      <RoomMembers members={members} />
+      <Messages messages={messages} />
     </div>
   );
 }

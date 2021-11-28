@@ -30,7 +30,7 @@ function RoomList() {
   return (
     <div id="roomlist">
       {rooms.map((room, index) => (
-        <RoomInfo room={room} key={index} />
+        <RoomInfo room={room} key={room.rid} />
       ))}
     </div>
   );

@@ -62,7 +62,6 @@ export default function (props: AppProps) {
         dispatch({ type: "AUTHENTICATE", payload: { email: user.email } });
       }
     });
-    console.log("sdd");
   }, []);
 
   return (

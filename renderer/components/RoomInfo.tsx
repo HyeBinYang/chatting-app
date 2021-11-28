@@ -17,7 +17,7 @@ function RoomInfo({ room }) {
       <h1>{room.title}</h1>
       <span>Member : </span>
       {Object.keys(room.Members).map((memberKey) => (
-        <b>{room.Members[memberKey].email}</b>
+        <b key={room.Members[memberKey].email}>{room.Members[memberKey].email}</b>
       ))}
     </div>
   );
