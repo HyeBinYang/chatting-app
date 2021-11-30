@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { database } from "../../services/firebase";
 import InsertMessage from "./InsertMessage";
 import Message from "./Message";
@@ -20,6 +20,7 @@ const getMessages = (rid) => {
 
 function Messages() {
   const router = useRouter();
+  const messageBox = useRef(null);
   const [messages, setMessages] = useState([]);
   const [rid, setRid] = useState<string | string[]>("");
 
@@ -39,12 +40,16 @@ function Messages() {
     database.ref(`ChatRoom/${rid}/Messages`).on("child_changed", getRoomMessages);
   }, [rid]);
 
+  useEffect(() => {
+    messageBox.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+  }, [messages]);
+
   return (
     <div id="Messages">
       <div className="Messages__title">
         <p>Messages</p>
       </div>
-      <div className="Messages__message">
+      <div className="Messages__message" ref={messageBox}>
         {messages.map((message) => (
           <Message chat={message} key={message.timestamp} />
         ))}

@@ -19,19 +19,20 @@ function InsertMessage() {
 
   const sendChat = async (e) => {
     e.preventDefault();
-
-    try {
-      await sendMessage(
-        {
-          message,
-          timestamp: Date.now(),
-          email: auth().currentUser.email,
-        },
-        router.query.rid
-      );
-      setMessage("");
-    } catch (error) {
-      console.log(error);
+    if (message) {
+      try {
+        await sendMessage(
+          {
+            message,
+            timestamp: Date.now(),
+            email: auth().currentUser.email,
+          },
+          router.query.rid
+        );
+        setMessage("");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
