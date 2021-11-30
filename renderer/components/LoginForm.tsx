@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useContext, useState } from "react";
 import { login } from "../helpers/auth";
-import Link from "./Link";
 import { UserDispatch } from "../pages/_app";
 import { auth } from "../services/firebase";
 
@@ -42,12 +42,6 @@ function LoginForm() {
           await auth().setPersistence(auth.Auth.Persistence.SESSION);
           dispatch({ type: "AUTHENTICATE", payload: { email } });
           router.push("/users");
-          // auth().onAuthStateChanged((user) => {
-          //   if (user) {
-          //     router.push("/users");
-          //     dispatch({ type: "AUTHENTICATE", payload: { email } });
-          //   }
-          // });
         } catch (error) {
           console.log(error);
         }
@@ -75,8 +69,8 @@ function LoginForm() {
         onChange={handleOnChange}
       />
       <button className="form__submit">로그인</button>
-      <Link className="form__link" href="/signup">
-        회원가입하러 가기
+      <Link href="/signup">
+        <a className="form__link">회원가입하러 가기</a>
       </Link>
     </form>
   );

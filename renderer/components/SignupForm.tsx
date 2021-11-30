@@ -1,8 +1,8 @@
+import Link from "next/link";
 import Router from "next/router";
 import React, { useCallback, useState } from "react";
 import { signup } from "../helpers/auth";
 import { database } from "../services/firebase";
-import Link from "./Link";
 
 interface SignupForm {
   email: string;
@@ -76,8 +76,8 @@ function SignupForm() {
         onChange={handleOnChange}
       />
       <button className="form__submit">회원가입</button>
-      <Link className="form__link" href="/login">
-        로그인하러 가기
+      <Link href="/login">
+        <a className="form__link">로그인하러 가기</a>
       </Link>
     </form>
   );

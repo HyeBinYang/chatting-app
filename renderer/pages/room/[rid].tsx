@@ -23,6 +23,7 @@ const getMessages = (rid) => {
     database.ref(`ChatRoom/${rid}/Messages`).on("value", (snapshot) => {
       snapshot.forEach((row) => {
         messages.push(row.val());
+        return false;
       });
     });
   }

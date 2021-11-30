@@ -5,20 +5,20 @@ import type { AppProps } from "next/app";
 // CSS
 import "../styles/common.css";
 import "../styles/auth.css";
-import "../styles/Form.css";
 import "../styles/navbar.css";
-import "../styles/UserList.css";
-import "../styles/User.css";
-import "../styles/RoomInfo.css";
-import "../styles/RoomList.css";
-import "../styles/RoomForm.css";
-import "../styles/RoomHeader.css";
-import "../styles/RoomMain.css";
-import "../styles/RoomMembers.css";
-import "../styles/RoomMember.css";
-import "../styles/Messages.css";
-import "../styles/Message.css";
-import "../styles/InsertMessage.css";
+import "../styles/userlist.css";
+import "../styles/form.css";
+import "../styles/user.css";
+import "../styles/roominfo.css";
+import "../styles/roomlist.css";
+import "../styles/roomform.css";
+import "../styles/roomheader.css";
+import "../styles/roommain.css";
+import "../styles/roommembers.css";
+import "../styles/roommember.css";
+import "../styles/messages.css";
+import "../styles/message.css";
+import "../styles/insertmessage.css";
 import { auth } from "../services/firebase";
 
 interface IState {

@@ -6,6 +6,7 @@ import { UserDispatch } from "../pages/_app";
 
 const deleteMember = (rid, email) => {
   let key = "";
+
   if (rid && email) {
     database.ref(`ChatRoom/${rid}/Members`).on("value", (snapshot) => {
       snapshot.forEach((row) => {
