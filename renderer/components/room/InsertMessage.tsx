@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { auth, database } from "../services/firebase";
+import { auth, database } from "../../services/firebase";
 
 function sendMessage(data, rid) {
   return database.ref(`ChatRoom/${rid}/Messages`).push({

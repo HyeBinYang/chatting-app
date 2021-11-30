@@ -4,11 +4,11 @@ interface User {
   email: string;
 }
 
-interface Props {
+interface UserProps {
   user: User;
 }
 
-function User({ user }: Props) {
+function User({ user }: UserProps) {
   return (
     <div id="user">
       <div className="user__image">

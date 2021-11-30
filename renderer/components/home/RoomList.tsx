@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { database } from "../services/firebase";
+import React, { useCallback, useEffect, useState } from "react";
+import { database } from "../../services/firebase";
 import RoomInfo from "./RoomInfo";
 
 function RoomList() {
   const [rooms, setRooms] = useState([]);
 
-  function getRooms() {
+  const getRooms = useCallback(() => {
     let newRooms = [];
     database.ref("ChatRoom").on("value", (snapshot) => {
       snapshot.forEach((row) => {
@@ -14,7 +14,7 @@ function RoomList() {
       });
       setRooms(newRooms);
     });
-  }
+  }, []);
 
   useEffect(() => {
     getRooms();

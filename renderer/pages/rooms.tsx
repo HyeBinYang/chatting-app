@@ -1,13 +1,13 @@
 import React from "react";
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import RoomList from "../components/RoomList";
+import Navbar from "../components/home/Navbar";
+import RoomList from "../components/home/RoomList";
 
-function group() {
+function single() {
   return (
     <React.Fragment>
       <Head>
-        <title>단체 채팅방</title>
+        <title>채팅방 목록</title>
       </Head>
       <div>
         <Navbar />
@@ -17,4 +17,4 @@ function group() {
   );
 }
 
-export default group;
+export default single;

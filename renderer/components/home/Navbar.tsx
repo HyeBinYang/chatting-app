@@ -1,7 +1,7 @@
 import React, { useContext, useCallback } from "react";
 import Link from "next/link";
-import { logout } from "../helpers/auth";
-import { UserDispatch } from "../pages/_app";
+import { logout } from "../../helpers/auth";
+import { UserDispatch } from "../../pages/_app";
 import { useRouter } from "next/router";
 
 function Navbar() {
@@ -19,7 +19,7 @@ function Navbar() {
       <Link href="/users">
         <li className="menu">유저 목록</li>
       </Link>
-      <Link href="/single">
+      <Link href="/rooms">
         <li className="menu">채팅방 목록</li>
       </Link>
       <Link href="/make">

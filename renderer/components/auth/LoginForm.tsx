@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useContext, useState } from "react";
-import { login } from "../helpers/auth";
-import { UserDispatch } from "../pages/_app";
-import { auth } from "../services/firebase";
+import { login } from "../../helpers/auth";
+import { UserDispatch } from "../../pages/_app";
+import { auth } from "../../services/firebase";
 
 interface LoginForm {
   email: string;

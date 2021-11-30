@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import SignupForm from "../components/SignupForm";
+import SignupForm from "../components/auth/SignupForm";
 
 function Signup() {
   return (

@@ -1,6 +1,13 @@
 import React from "react";
 
+function getDate(timestamp) {
+  const date = new Date(timestamp);
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+}
+
 function Message({ chat }) {
+  getDate(chat.timestamp);
+
   return (
     <div className="Message">
       <div className="Message__left">
@@ -13,10 +20,10 @@ function Message({ chat }) {
       </div>
       <div className="Message__right">
         <span>{chat.email}</span>
-        <span>{chat.timestamp}</span>
+        <span>{getDate(chat.timestamp)}</span>
       </div>
     </div>
   );
 }
 
-export default Message;
+export default React.memo(Message);

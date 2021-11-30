@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Router from "next/router";
 import React, { useCallback, useState } from "react";
-import { signup } from "../helpers/auth";
-import { database } from "../services/firebase";
+import { signup } from "../../helpers/auth";
+import { database } from "../../services/firebase";
 
 interface SignupForm {
   email: string;

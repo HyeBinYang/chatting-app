@@ -1,6 +1,6 @@
 import firebase from "firebase";
 import React, { useCallback, useEffect, useState } from "react";
-import { database } from "../services/firebase";
+import { database } from "../../services/firebase";
 import User from "./User";
 
 interface IUser {

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import RoomForm from "../components/RoomForm";
+import Navbar from "../components/home/Navbar";
+import RoomForm from "../components/home/RoomForm";
 
 function make() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import UserList from "../components/UserList";
+import Navbar from "../components/home/Navbar";
+import UserList from "../components/home/UserList";
 
 function users() {
   return (
