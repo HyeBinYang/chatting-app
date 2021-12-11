@@ -5,12 +5,14 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import FindUsername from "../pages/FindUsername";
 import InputUsername from "../pages/InputUsername";
+import Users from "../pages/Users";
 
 function Main() {
   return (
     <>
       <Routes>
-        <Route path="" element={<Login />} />
+        <Route path="/" element={<Users />} />
+        {/* <Route path="" element={<Login />} /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/find/username" element={<FindUsername />} />
         <Route path="/input/username" element={<InputUsername />} />
