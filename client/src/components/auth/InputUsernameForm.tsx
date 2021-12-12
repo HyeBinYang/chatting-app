@@ -1,20 +1,20 @@
 import React from "react";
-import "./authForm.scss";
+import "../authForm.scss";
 import SearchLinks from "./SearchLinks";
 
-function LoginForm() {
+function InputUsernameForm() {
   const links = [
     {
+      title: "로그인",
+      path: "/",
+    },
+    {
       title: "회원가입",
-      path: "signup",
+      path: "/signup",
     },
     {
       title: "계정 찾기",
       path: "/find/username",
-    },
-    {
-      title: "비밀번호 재설정",
-      path: "/input/username",
     },
   ];
 
@@ -25,9 +25,8 @@ function LoginForm() {
       </div>
       <form className="authForm__form">
         <input className="form__input" type="text" placeholder="아이디" />
-        <input className="form__input" type="password" placeholder="비밀번호" />
         <button className="form__btn active" type="submit">
-          로그인
+          인증번호 전송
         </button>
       </form>
       <SearchLinks links={links} />
@@ -35,4 +34,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default InputUsernameForm;

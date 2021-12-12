@@ -1,6 +1,6 @@
 import React from "react";
 import "./authPage.scss";
-import InputUsernameForm from "../components/InputUsernameForm";
+import InputUsernameForm from "../components/auth/InputUsernameForm";
 
 function InputUsername() {
   return (

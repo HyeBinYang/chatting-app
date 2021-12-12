@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./authForm.scss";
+import "../authForm.scss";
 
 interface Link {
   title: string;

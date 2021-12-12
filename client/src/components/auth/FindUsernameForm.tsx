@@ -1,8 +1,8 @@
 import React from "react";
-import "./authForm.scss";
+import "../authForm.scss";
 import SearchLinks from "./SearchLinks";
 
-function InputUsernameForm() {
+function FindUsernameForm() {
   const links = [
     {
       title: "로그인",
@@ -13,8 +13,8 @@ function InputUsernameForm() {
       path: "/signup",
     },
     {
-      title: "계정 찾기",
-      path: "/find/username",
+      title: "비밀번호 재설정",
+      path: "/input/username",
     },
   ];
 
@@ -24,9 +24,9 @@ function InputUsernameForm() {
         <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="logo" />
       </div>
       <form className="authForm__form">
-        <input className="form__input" type="text" placeholder="아이디" />
+        <input className="form__input" type="text" placeholder="이메일" />
         <button className="form__btn active" type="submit">
-          인증번호 전송
+          아이디 보내기
         </button>
       </form>
       <SearchLinks links={links} />
@@ -34,4 +34,4 @@ function InputUsernameForm() {
   );
 }
 
-export default InputUsernameForm;
+export default FindUsernameForm;

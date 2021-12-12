@@ -1,6 +1,6 @@
 import React from "react";
 import "./authPage.scss";
-import FindUsernameForm from "../components/FindUsernameForm";
+import FindUsernameForm from "../components/auth/FindUsernameForm";
 
 function FindUsername() {
   return (
