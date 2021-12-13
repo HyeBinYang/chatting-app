@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./ChatRooms.scss";
 
 function ChatRoom() {
+  const navigate = useNavigate();
+
+  const enterRoom = () => {
+    navigate("/room/123");
+  };
+
   return (
-    <div className="ChatRooms__room">
+    <div onDoubleClick={enterRoom} className="ChatRooms__room">
       <div className="room__container">
         <div className="room__photo">
           <img src="https://picsum.photos/200" alt="" />
