@@ -5,6 +5,8 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import FindUsername from "../pages/FindUsername";
 import InputUsername from "../pages/InputUsername";
+import InputCertificationNumber from "../pages/InputCertificationNumber";
+import ResetPassword from "../pages/ResetPassword";
 import Users from "../pages/Users";
 import Rooms from "../pages/Rooms";
 import Room from "../pages/Room";
@@ -17,6 +19,8 @@ function Main() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/find/username" element={<FindUsername />} />
         <Route path="/input/username" element={<InputUsername />} />
+        <Route path="/input/certification" element={<InputCertificationNumber />} />
+        <Route path="/reset/password" element={<ResetPassword />} />
         <Route path="/users" element={<Users />} />
         <Route path="/rooms" element={<Rooms />} />
         <Route path="/room/:rid" element={<Room />} />

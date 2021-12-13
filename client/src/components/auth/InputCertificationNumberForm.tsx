@@ -1,9 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../authForm.scss";
 import SearchLinks from "./SearchLinks";
 
-function InputUsernameForm() {
+function InputCertificationNumberForm() {
   const navigate = useNavigate();
 
   const links = [
@@ -21,8 +20,8 @@ function InputUsernameForm() {
     },
   ];
 
-  const requestCertificationNumber = () => {
-    navigate("/input/certification");
+  const certificate = () => {
+    navigate("/reset/password");
   };
 
   return (
@@ -30,10 +29,10 @@ function InputUsernameForm() {
       <div className="authForm__logo">
         <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="logo" />
       </div>
-      <form className="authForm__form" onSubmit={requestCertificationNumber}>
-        <input className="form__input" type="text" placeholder="아이디" />
+      <form className="authForm__form" onSubmit={certificate}>
+        <input className="form__input" type="text" placeholder="인증번호" />
         <button className="form__btn active" type="submit">
-          인증번호 전송
+          인증하기
         </button>
       </form>
       <SearchLinks links={links} />
@@ -41,4 +40,4 @@ function InputUsernameForm() {
   );
 }
 
-export default InputUsernameForm;
+export default InputCertificationNumberForm;

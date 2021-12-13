@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { FaUser } from "react-icons/fa";
-import { AiOutlineSetting } from "react-icons/ai";
 import { BiMessageRounded } from "react-icons/bi";
+import { MdOutlineLogout } from "react-icons/md";
 import "./HomeNav.scss";
 import { Link, useLocation } from "react-router-dom";
 
@@ -28,6 +28,10 @@ function HomeNav() {
     }
   }, []);
 
+  const logout = () => {
+    console.log("sad");
+  };
+
   useEffect(() => {
     setActive();
   }, []);
@@ -40,8 +44,8 @@ function HomeNav() {
       <Link to="/rooms" ref={roomRef}>
         <BiMessageRounded />
       </Link>
-      <Link to="">
-        <AiOutlineSetting />
+      <Link onClick={logout} to="/">
+        <MdOutlineLogout />
       </Link>
     </div>
   );
