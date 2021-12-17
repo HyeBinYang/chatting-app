@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FaGalacticSenate } from "react-icons/fa";
 import SearchLinks from "./SearchLinks";
+import { auth } from "../../server/firebase";
+import { useNavigate } from "react-router-dom";
 
 interface SignupFormState {
   username: string;
@@ -15,15 +16,17 @@ interface Link {
 }
 
 function SignupForm() {
+  const navigate = useNavigate();
+
   const [signupForm, setSignupForm] = useState<SignupFormState>({
     username: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
-
   const [usernameError, setUsernameError] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<boolean>(false);
+  const [emailDuplicationError, setEmailDuplicationError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<boolean>(false);
   const [passwordConfirmError, setPasswordConfirmError] = useState<boolean>(false);
 
@@ -85,6 +88,7 @@ function SignupForm() {
   const clearErrorMessage = (): void => {
     setUsernameError(false);
     setEmailError(false);
+    setEmailDuplicationError(false);
     setPasswordError(false);
     setPasswordConfirmError(false);
   };
@@ -98,8 +102,16 @@ function SignupForm() {
       checkEmailValidation(signupForm.email) &&
       checkPasswordValidation(signupForm.password, signupForm.passwordConfirm)
     ) {
-      console.log(signupForm);
-    } else {
+      auth()
+        .createUserWithEmailAndPassword(signupForm.email, signupForm.password)
+        .then(() => {
+          console.log("회원가입 성공");
+          navigate("/");
+        })
+        .catch((err) => {
+          console.log(err);
+          setEmailDuplicationError(true);
+        });
     }
   };
 
@@ -127,6 +139,7 @@ function SignupForm() {
           value={signupForm.email}
         />
         {emailError ? <span className="form_errormsg">이메일이 유효하지 않습니다.</span> : null}
+        {emailDuplicationError ? <span className="form_errormsg">이미 가입된 이메일입니다.</span> : null}
         <input
           onChange={inputSignupForm}
           className="form__input"
