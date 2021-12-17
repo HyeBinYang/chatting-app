@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./UserList.scss";
 
 function User() {
+  const navigate = useNavigate();
+
+  const enterRoom = () => {
+    navigate("/room/123");
+  };
+
   return (
-    <div className="UserList__user">
+    <div onDoubleClick={enterRoom} className="UserList__user">
       <div className="user__container">
         <div className="user__photo">
           <img src="https://picsum.photos/200" alt="" />

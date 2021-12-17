@@ -4,14 +4,14 @@ import SearchLinks from "./SearchLinks";
 import { useNavigate } from "react-router-dom";
 
 interface LoginFormState {
-  username: string;
+  email: string;
   password: string;
 }
 
 function LoginForm() {
   const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState<LoginFormState>({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -49,9 +49,9 @@ function LoginForm() {
           onChange={onChangeLoginForm}
           className="form__input"
           type="text"
-          value={loginForm.username}
-          name="username"
-          placeholder="아이디"
+          value={loginForm.email}
+          name="email"
+          placeholder="이메일"
         />
         <input
           onChange={onChangeLoginForm}

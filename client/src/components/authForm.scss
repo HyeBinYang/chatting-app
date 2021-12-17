@@ -39,6 +39,12 @@ $brown: #3a1d1d;
       outline: none;
     }
 
+    .form_errormsg {
+      color: #f83838;
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
     .form__btn {
       margin-top: 10px;
       height: 45px;
@@ -63,7 +69,7 @@ $brown: #3a1d1d;
 
   .authForm__links {
     position: absolute;
-    bottom: 60px;
+    bottom: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
