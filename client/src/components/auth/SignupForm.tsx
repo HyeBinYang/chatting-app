@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchLinks from "./SearchLinks";
 import { auth } from "../../server/firebase";
+import { Database, getDatabase, onValue, push, ref } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 interface SignupFormState {
@@ -25,6 +26,7 @@ function SignupForm() {
     passwordConfirm: "",
   });
   const [usernameError, setUsernameError] = useState<boolean>(false);
+  const [usernameDuplicationError, setUsernameDuplicationError] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<boolean>(false);
   const [emailDuplicationError, setEmailDuplicationError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState<boolean>(false);
@@ -87,13 +89,31 @@ function SignupForm() {
 
   const clearErrorMessage = (): void => {
     setUsernameError(false);
+    setUsernameDuplicationError(false);
     setEmailError(false);
     setEmailDuplicationError(false);
     setPasswordError(false);
     setPasswordConfirmError(false);
   };
 
-  const signup = (e: React.FormEvent<HTMLFormElement>): void => {
+  const requestSignup = (db: Database): void => {
+    auth()
+      .createUserWithEmailAndPassword(signupForm.email, signupForm.password)
+      .then(() => {
+        push(ref(db, "users/"), {
+          email: signupForm.email,
+          username: signupForm.username,
+        });
+        clearErrorMessage();
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setEmailDuplicationError(true);
+      });
+  };
+
+  const signup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     clearErrorMessage();
 
@@ -102,16 +122,23 @@ function SignupForm() {
       checkEmailValidation(signupForm.email) &&
       checkPasswordValidation(signupForm.password, signupForm.passwordConfirm)
     ) {
-      auth()
-        .createUserWithEmailAndPassword(signupForm.email, signupForm.password)
-        .then(() => {
-          console.log("회원가입 성공");
-          navigate("/");
-        })
-        .catch((err) => {
-          console.log(err);
-          setEmailDuplicationError(true);
-        });
+      const db = getDatabase();
+      const userRef = ref(db, "users/");
+
+      onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        if (snapshot.exists()) {
+          const usernameDuplicationCheck = Object.keys(data).some((row) => data[row].username === signupForm.username);
+
+          if (!usernameDuplicationCheck) {
+            requestSignup(db);
+          } else {
+            setUsernameDuplicationError(true);
+          }
+        } else {
+          requestSignup(db);
+        }
+      });
     }
   };
 
@@ -130,6 +157,7 @@ function SignupForm() {
           value={signupForm.username}
         />
         {usernameError ? <span className="form_errormsg">아이디가 유효하지 않습니다.</span> : null}
+        {usernameDuplicationError ? <span className="form_errormsg">이미 가입된 아이디입니다.</span> : null}
         <input
           onChange={inputSignupForm}
           className="form__input"
