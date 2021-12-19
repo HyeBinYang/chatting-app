@@ -14,7 +14,8 @@ $nav-item-active-color: #504f4f;
   top: 0;
   left: 0;
 
-  a {
+  a,
+  button {
     color: $nav-item-color;
     font-size: 1.65em;
     margin-bottom: 25px;
@@ -26,5 +27,10 @@ $nav-item-active-color: #504f4f;
 
   a.active {
     color: $nav-item-active-color;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
   }
 }
