@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchLinks from "./SearchLinks";
 import { auth } from "../../server/firebase";
-import { Database, getDatabase, onValue, push, ref } from "firebase/database";
+import { Database, getDatabase, onValue, push, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 interface SignupFormState {
@@ -99,8 +99,8 @@ function SignupForm() {
   const requestSignup = (db: Database): void => {
     auth()
       .createUserWithEmailAndPassword(signupForm.email, signupForm.password)
-      .then(() => {
-        push(ref(db, "users/"), {
+      .then((userCredential) => {
+        set(ref(db, `users/${userCredential.user?.uid}/`), {
           email: signupForm.email,
           username: signupForm.username,
         });

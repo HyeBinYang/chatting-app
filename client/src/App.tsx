@@ -1,11 +1,14 @@
 import React from "react";
 import "./App.scss";
 import MainTamplate from "./components/MainTemplate";
+import UserStore from "./store/user";
 
 function App() {
   return (
     <div id="app">
-      <MainTamplate />
+      <UserStore>
+        <MainTamplate />
+      </UserStore>
     </div>
   );
 }

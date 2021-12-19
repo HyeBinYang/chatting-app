@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../authForm.scss";
 import SearchLinks from "./SearchLinks";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../server/firebase";
+import { userContext } from "../../store/user";
+import { getDatabase, onValue, ref } from "firebase/database";
 
 interface LoginFormState {
   email: string;
@@ -10,6 +12,7 @@ interface LoginFormState {
 }
 
 function LoginForm() {
+  const userInfoContext = useContext(userContext);
   const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState<LoginFormState>({
     email: "",
@@ -39,14 +42,21 @@ function LoginForm() {
   const login = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
-    const user = await auth()
+    const userInfo = await auth()
       .signInWithEmailAndPassword(loginForm.email, loginForm.password)
       .catch((err) => setAuthError(true));
     await auth()
       .setPersistence(auth.Auth.Persistence.SESSION)
       .catch((err) => console.error(err));
 
-    navigate("/users");
+    const uid = userInfo?.user?.uid;
+    const db = getDatabase();
+    onValue(ref(db, `users/${uid}/`), (snapshot) => {
+      if (snapshot.exists()) {
+        userInfoContext!.username = snapshot.val().username;
+        navigate("/users");
+      }
+    });
   };
 
   return (
