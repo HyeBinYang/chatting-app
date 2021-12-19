@@ -5,12 +5,12 @@ import { MdOutlineLogout } from "react-icons/md";
 import "./HomeNav.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../server/firebase";
-import { userContext } from "../../store/user";
+import { UserContext } from "../../store/user";
 
 function HomeNav() {
   const location = useLocation();
   const navigate = useNavigate();
-  const context = useContext(userContext);
+  const context = useContext(UserContext);
 
   const userRef = useRef<HTMLAnchorElement>(null);
   const roomRef = useRef<HTMLAnchorElement>(null);
@@ -37,7 +37,7 @@ function HomeNav() {
       .signOut()
       .catch((err) => console.error(err));
 
-    context!.username = "";
+    context?.dispatch({ type: "DELETE_USER" });
     navigate("/");
   };
 

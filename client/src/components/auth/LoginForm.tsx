@@ -3,7 +3,7 @@ import "../authForm.scss";
 import SearchLinks from "./SearchLinks";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../server/firebase";
-import { userContext } from "../../store/user";
+import { UserContext } from "../../store/user";
 import { getDatabase, onValue, ref } from "firebase/database";
 
 interface LoginFormState {
@@ -12,7 +12,7 @@ interface LoginFormState {
 }
 
 function LoginForm() {
-  const userInfoContext = useContext(userContext);
+  const userInfoContext = useContext(UserContext);
   const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState<LoginFormState>({
     email: "",
@@ -53,7 +53,7 @@ function LoginForm() {
     const db = getDatabase();
     onValue(ref(db, `users/${uid}/`), (snapshot) => {
       if (snapshot.exists()) {
-        userInfoContext!.username = snapshot.val().username;
+        userInfoContext!.dispatch({ type: "CREATE_USER", payload: { username: snapshot.val().username } });
         navigate("/users");
       }
     });
