@@ -113,7 +113,7 @@ function SignupForm() {
       });
   };
 
-  const signup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const signup = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     clearErrorMessage();
 

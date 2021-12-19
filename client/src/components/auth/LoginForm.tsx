@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../authForm.scss";
 import SearchLinks from "./SearchLinks";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../server/firebase";
 
 interface LoginFormState {
   email: string;
@@ -14,6 +15,7 @@ function LoginForm() {
     email: "",
     password: "",
   });
+  const [authError, setAuthError] = useState<boolean>(false);
 
   const links = [
     {
@@ -30,12 +32,20 @@ function LoginForm() {
     },
   ];
 
-  const onChangeLoginForm = (e: any) => {
+  const onChangeLoginForm = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
   };
 
-  const login = (e: any) => {
+  const login = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+
+    const user = await auth()
+      .signInWithEmailAndPassword(loginForm.email, loginForm.password)
+      .catch((err) => setAuthError(true));
+    await auth()
+      .setPersistence(auth.Auth.Persistence.SESSION)
+      .catch((err) => console.error(err));
+
     navigate("/users");
   };
 
@@ -61,6 +71,7 @@ function LoginForm() {
           name="password"
           placeholder="비밀번호"
         />
+        {authError ? <span className="form_errormsg">이메일 또는 비밀번호가 틀렸습니다.</span> : null}
         <button className="form__btn active" type="submit">
           로그인
         </button>
