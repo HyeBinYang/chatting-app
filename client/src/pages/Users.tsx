@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomeNav from "../components/home/HomeNav";
 import HomeTemplate from "../components/home/HomeTemplate";
 import "./homePage.scss";
