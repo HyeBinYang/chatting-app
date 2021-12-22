@@ -9,7 +9,9 @@ interface IFriend {
 }
 
 function RecommendedFriends() {
+  const [friendInput, setFriendInput] = useState<string>("");
   const [friends, setFriends] = useState<IFriend[]>([]);
+  const [filteredFriends, setFilteredFriends] = useState<IFriend[]>([]);
 
   useEffect(() => {
     const db = getDatabase();
@@ -19,11 +21,24 @@ function RecommendedFriends() {
     });
   }, []);
 
+  const searchUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFriendInput(e.target.value);
+    setFilteredFriends(friends.filter((friend) => friend.username.includes(e.target.value)));
+  };
+
   return (
     <div className="UserList">
-      {friends.map((friend) => (
-        <Friend friend={friend} key={friend.email} />
-      ))}
+      <input
+        onChange={searchUser}
+        className="UserList__search"
+        type="text"
+        placeholder="친구 검색"
+        value={friendInput}
+      />
+      <p className="UserList__info">추천 친구 {friends.length}</p>
+      {friendInput
+        ? filteredFriends.map((friend) => <Friend friend={friend} key={friend.email} />)
+        : friends.map((friend) => <Friend friend={friend} key={friend.email} />)}
     </div>
   );
 }
