@@ -9,6 +9,7 @@ import InputCertificationNumber from "../pages/InputCertificationNumber";
 import ResetPassword from "../pages/ResetPassword";
 import Users from "../pages/Users";
 import Rooms from "../pages/Rooms";
+import Recommend from "../pages/Recommend";
 import Room from "../pages/Room";
 
 function Main() {
@@ -23,6 +24,7 @@ function Main() {
         <Route path="/reset/password" element={<ResetPassword />} />
         <Route path="/users" element={<Users />} />
         <Route path="/rooms" element={<Rooms />} />
+        <Route path="/recommend/friends" element={<Recommend />} />
         <Route path="/room/:rid" element={<Room />} />
       </Routes>
     </>

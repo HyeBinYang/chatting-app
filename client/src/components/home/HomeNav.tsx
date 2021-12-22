@@ -1,7 +1,8 @@
 import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { FaUser } from "react-icons/fa";
-import { BiMessageRounded } from "react-icons/bi";
+import { BiMessageRounded, BiSearch } from "react-icons/bi";
 import { MdOutlineLogout } from "react-icons/md";
+// import { BiSearch } from "react-icons/fa";
 import "./HomeNav.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../server/firebase";
@@ -46,17 +47,20 @@ function HomeNav() {
   }, []);
 
   return (
-    <div className="homeNav">
+    <nav className="homeNav">
       <Link to="/users" ref={userRef}>
         <FaUser />
       </Link>
       <Link to="/rooms" ref={roomRef}>
         <BiMessageRounded />
       </Link>
+      <Link to="/recommend/friends">
+        <BiSearch />
+      </Link>
       <button onClick={logout}>
         <MdOutlineLogout />
       </button>
-    </div>
+    </nav>
   );
 }
 

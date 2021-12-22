@@ -1,6 +1,7 @@
 import { getDatabase, onValue, ref } from "firebase/database";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { auth } from "../../../server/firebase";
+import { UserContext } from "../../../store/user";
 import User from "./User";
 import "./UserList.scss";
 
@@ -9,6 +10,7 @@ interface Friend {
 }
 
 function UserList() {
+  const context = useContext(UserContext);
   const [friends, setFriends] = useState<Friend[]>([]);
 
   useEffect(() => {
@@ -16,6 +18,13 @@ function UserList() {
       if (user) {
         const uid = user.uid;
         const db = getDatabase();
+
+        onValue(ref(db, `users/${uid}`), (snapshot) => {
+          if (snapshot.exists()) {
+            context?.dispatch({ type: "CREATE_USER", payload: { username: snapshot.val().username } });
+          }
+        });
+
         onValue(ref(db, `users/${uid}/friends`), (snapshot) => {
           console.log(snapshot.exists());
         });
@@ -25,7 +34,7 @@ function UserList() {
 
   return (
     <div className="UserList">
-      <p className="UserList__info">유저 {friends.length}</p>
+      <p className="UserList__info">친구 {friends.length}</p>
       {friends.map((friend) => (
         <User key={friend.id} />
       ))}

@@ -36,6 +36,13 @@
       .user__username {
         font-size: 0.8em;
         font-weight: bold;
+        text-align: left;
+        flex-grow: 1;
+      }
+
+      .user__add {
+        margin-right: 1.25rem;
+        cursor: pointer;
       }
 
       &:hover {
