@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GrAdd } from "react-icons/gr";
+import { getDatabase, set, ref, push } from "firebase/database";
+import { auth } from "../../../server/firebase";
 
-interface Friend {
+interface FriendState {
   email: string;
   username: string;
 }
 
 interface IFriend {
-  friend: Friend;
+  friend: FriendState;
+  deleteRecommendedFriend: (friend: FriendState) => void;
 }
 
-function Friend({ friend }: IFriend) {
+function Friend({ friend, deleteRecommendedFriend }: IFriend) {
+  const addFriend = () => {
+    const uid = auth().currentUser?.uid;
+    const db = getDatabase();
+    push(ref(db, `users/${uid}/friends/`), friend.username);
+    deleteRecommendedFriend(friend);
+  };
+
   return (
     <div className="UserList__user">
       <div className="user__container">
@@ -18,7 +28,7 @@ function Friend({ friend }: IFriend) {
           <img src="https://picsum.photos/200" alt="" />
         </div>
         <p className="user__username">{friend.username}</p>
-        <GrAdd className="user__add" />
+        <GrAdd className="user__add" onClick={addFriend} />
       </div>
     </div>
   );

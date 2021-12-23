@@ -2,6 +2,7 @@ import { getDatabase, onValue, ref } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import Friend from "./Friend";
 import "../users/UserList.scss";
+import { auth } from "../../../server/firebase";
 
 interface IFriend {
   email: string;
@@ -13,13 +14,67 @@ function RecommendedFriends() {
   const [friends, setFriends] = useState<IFriend[]>([]);
   const [filteredFriends, setFilteredFriends] = useState<IFriend[]>([]);
 
-  useEffect(() => {
+  // function when mounted...
+  // Get all users
+  function getAllUsers(uid: string | undefined, friendArr: string[]): void {
+    if (uid) {
+      const db = getDatabase();
+      onValue(ref(db, "users/"), (snapshot) => {
+        const responseData = snapshot.val();
+        const newFriends: IFriend[] = [];
+        const userKeys = Object.keys(responseData).filter((userKey) => {
+          return userKey !== uid && !friendArr.includes(responseData[userKey].username);
+        });
+        userKeys.forEach((userKey) => newFriends.push(responseData[userKey]));
+        setFriends(newFriends);
+      });
+    }
+  }
+
+  // Get my friends
+  function getMyFriends(uid: string | undefined): void {
     const db = getDatabase();
-    onValue(ref(db, "users/"), (snapshot) => {
-      const uid = Object.keys(snapshot.val())[0];
-      setFriends([...friends, snapshot.val()[uid]]);
+    onValue(ref(db, `users/${uid}/friends`), (snapshot) => {
+      const responseData = snapshot.val();
+      const friendArr: string[] = [];
+      const myFriendsKeys = Object.keys(responseData);
+      myFriendsKeys.forEach((key) => friendArr.push(responseData[key]));
+      getAllUsers(uid, friendArr);
     });
+  }
+
+  // Get my uid
+  function getMyUid(): void {
+    let uid: string | undefined = "";
+    auth().onAuthStateChanged((user) => {
+      if (user) {
+        uid = auth().currentUser?.uid;
+        getMyFriends(uid);
+      }
+    });
+  }
+
+  const getRecommendedUsers = () => {
+    getMyUid();
+  };
+
+  useEffect(() => {
+    getRecommendedUsers();
   }, []);
+
+  const deleteRecommendedFriend = (friend: IFriend): void => {
+    setFriends(
+      friends.filter((f) => {
+        return f.email !== friend.email;
+      })
+    );
+
+    setFilteredFriends(
+      filteredFriends.filter((f) => {
+        return f.email !== friend.email;
+      })
+    );
+  };
 
   const searchUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFriendInput(e.target.value);
@@ -37,8 +92,12 @@ function RecommendedFriends() {
       />
       <p className="UserList__info">추천 친구 {friends.length}</p>
       {friendInput
-        ? filteredFriends.map((friend) => <Friend friend={friend} key={friend.email} />)
-        : friends.map((friend) => <Friend friend={friend} key={friend.email} />)}
+        ? filteredFriends.map((friend) => (
+            <Friend friend={friend} deleteRecommendedFriend={deleteRecommendedFriend} key={friend.email} />
+          ))
+        : friends.map((friend) => (
+            <Friend friend={friend} deleteRecommendedFriend={deleteRecommendedFriend} key={friend.email} />
+          ))}
     </div>
   );
 }

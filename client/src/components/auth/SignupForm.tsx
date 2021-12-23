@@ -105,7 +105,7 @@ function SignupForm() {
           username: signupForm.username,
         });
         clearErrorMessage();
-        navigate("/");
+        navigate("/users");
       })
       .catch((err) => {
         console.log(err);
