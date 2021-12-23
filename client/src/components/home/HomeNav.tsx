@@ -2,7 +2,6 @@ import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { FaUser } from "react-icons/fa";
 import { BiMessageRounded, BiSearch } from "react-icons/bi";
 import { MdOutlineLogout } from "react-icons/md";
-// import { BiSearch } from "react-icons/fa";
 import "./HomeNav.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../server/firebase";
@@ -15,6 +14,7 @@ function HomeNav() {
 
   const userRef = useRef<HTMLAnchorElement>(null);
   const roomRef = useRef<HTMLAnchorElement>(null);
+  const recommendRef = useRef<HTMLAnchorElement>(null);
 
   const setActive = useCallback(() => {
     switch (location.pathname) {
@@ -26,6 +26,11 @@ function HomeNav() {
       case "/rooms":
         if (roomRef.current) {
           roomRef.current.className = "active";
+        }
+        break;
+      case "/recommend/friends":
+        if (recommendRef.current) {
+          recommendRef.current.className = "active";
         }
         break;
       default:
@@ -54,7 +59,7 @@ function HomeNav() {
       <Link to="/rooms" ref={roomRef}>
         <BiMessageRounded />
       </Link>
-      <Link to="/recommend/friends">
+      <Link to="/recommend/friends" ref={recommendRef}>
         <BiSearch />
       </Link>
       <button onClick={logout}>
