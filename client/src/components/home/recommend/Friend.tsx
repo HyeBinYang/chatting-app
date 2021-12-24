@@ -34,4 +34,4 @@ function Friend({ friend, deleteRecommendedFriend }: IFriend) {
   );
 }
 
-export default Friend;
+export default React.memo(Friend);

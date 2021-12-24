@@ -19,28 +19,41 @@ function RecommendedFriends() {
   function getAllUsers(uid: string | undefined, friendArr: string[]): void {
     if (uid) {
       const db = getDatabase();
-      onValue(ref(db, "users/"), (snapshot) => {
-        const responseData = snapshot.val();
-        const newFriends: IFriend[] = [];
-        const userKeys = Object.keys(responseData).filter((userKey) => {
-          return userKey !== uid && !friendArr.includes(responseData[userKey].username);
-        });
-        userKeys.forEach((userKey) => newFriends.push(responseData[userKey]));
-        setFriends(newFriends);
-      });
+      onValue(
+        ref(db, "users/"),
+        (snapshot) => {
+          console.log("asdas");
+          if (snapshot.exists()) {
+            const responseData = snapshot.val();
+            const newFriends: IFriend[] = [];
+            const userKeys = Object.keys(responseData).filter((userKey) => {
+              return userKey !== uid && !friendArr.includes(responseData[userKey].username);
+            });
+            userKeys.forEach((userKey) => newFriends.push(responseData[userKey]));
+            setFriends(newFriends);
+          }
+        },
+        { onlyOnce: true }
+      );
     }
   }
 
   // Get my friends
   function getMyFriends(uid: string | undefined): void {
     const db = getDatabase();
-    onValue(ref(db, `users/${uid}/friends`), (snapshot) => {
-      const responseData = snapshot.val();
-      const friendArr: string[] = [];
-      const myFriendsKeys = Object.keys(responseData);
-      myFriendsKeys.forEach((key) => friendArr.push(responseData[key]));
-      getAllUsers(uid, friendArr);
-    });
+    onValue(
+      ref(db, `users/${uid}/friends`),
+      (snapshot) => {
+        const friendArr: string[] = [];
+        if (snapshot.exists()) {
+          const responseData = snapshot.val();
+          const myFriendsKeys = Object.keys(responseData);
+          myFriendsKeys.forEach((key) => friendArr.push(responseData[key]));
+        }
+        getAllUsers(uid, friendArr);
+      },
+      { onlyOnce: true }
+    );
   }
 
   // Get my uid

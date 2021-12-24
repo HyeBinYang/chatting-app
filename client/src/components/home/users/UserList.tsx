@@ -6,12 +6,12 @@ import User from "./User";
 import "./UserList.scss";
 
 interface Friend {
-  id: number;
+  username: string;
 }
 
 function UserList() {
   const context = useContext(UserContext);
-  const [friends, setFriends] = useState<Friend[]>([]);
+  const [friends, setFriends] = useState<string[]>([]);
 
   useEffect(() => {
     auth().onAuthStateChanged((user) => {
@@ -19,15 +19,32 @@ function UserList() {
         const uid = user.uid;
         const db = getDatabase();
 
-        onValue(ref(db, `users/${uid}`), (snapshot) => {
-          if (snapshot.exists()) {
-            context?.dispatch({ type: "CREATE_USER", payload: { username: snapshot.val().username } });
-          }
-        });
+        onValue(
+          ref(db, `users/${uid}/`),
+          (snapshot) => {
+            if (snapshot.exists()) {
+              context?.dispatch({ type: "CREATE_USER", payload: { username: snapshot.val().username } });
+            }
+          },
+          { onlyOnce: true }
+        );
 
-        onValue(ref(db, `users/${uid}/friends`), (snapshot) => {
-          console.log(snapshot.exists());
-        });
+        onValue(
+          ref(db, `users/${uid}/friends/`),
+          (snapshot) => {
+            console.log("we");
+            if (snapshot.exists()) {
+              const friendArr: string[] = [];
+              const responseData = snapshot.val();
+              const friendKeys = Object.keys(responseData);
+              friendKeys.forEach((key) => {
+                friendArr.push(responseData[key]);
+              });
+              setFriends(friendArr);
+            }
+          },
+          { onlyOnce: true }
+        );
       }
     });
   }, []);
@@ -36,15 +53,8 @@ function UserList() {
     <div className="UserList">
       <p className="UserList__info">친구 {friends.length}</p>
       {friends.map((friend) => (
-        <User key={friend.id} />
+        <User key={friend} username={friend} friends={friends} setFriends={setFriends} />
       ))}
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
-      <User />
     </div>
   );
 }
