@@ -15,7 +15,7 @@ function User({ username, friends, setFriends }: IProps) {
   const navigate = useNavigate();
 
   const enterRoom = () => {
-    navigate("/room/123");
+    navigate("/room/123", { state: { to: username } });
   };
 
   const onClickDelete = () => {
@@ -45,7 +45,7 @@ function User({ username, friends, setFriends }: IProps) {
           <img src="https://picsum.photos/200" alt="" />
         </div>
         <p className="user__username">{username}</p>
-        <RiDeleteBin6Line className="user__add" onClick={onClickDelete} />
+        <RiDeleteBin6Line className="user__icon" onClick={onClickDelete} />
       </div>
     </div>
   );

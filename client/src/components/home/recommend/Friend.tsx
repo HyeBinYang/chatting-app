@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GrAdd } from "react-icons/gr";
-import { getDatabase, set, ref, push } from "firebase/database";
+import { getDatabase, ref, push } from "firebase/database";
 import { auth } from "../../../server/firebase";
 
 interface FriendState {
@@ -28,7 +28,7 @@ function Friend({ friend, deleteRecommendedFriend }: IFriend) {
           <img src="https://picsum.photos/200" alt="" />
         </div>
         <p className="user__username">{friend.username}</p>
-        <GrAdd className="user__add" onClick={addFriend} />
+        <GrAdd className="user__icon" onClick={addFriend} />
       </div>
     </div>
   );

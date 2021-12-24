@@ -32,7 +32,6 @@ function UserList() {
         onValue(
           ref(db, `users/${uid}/friends/`),
           (snapshot) => {
-            console.log("we");
             if (snapshot.exists()) {
               const friendArr: string[] = [];
               const responseData = snapshot.val();

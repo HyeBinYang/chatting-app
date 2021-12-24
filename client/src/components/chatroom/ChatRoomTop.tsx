@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./ChatRoom.scss";
 
 function ChatRoomTop() {
+  const location = useLocation();
+
   return (
     <div className="ChatRoomTop">
       <div className="ChatRoomTop__left">
@@ -11,7 +13,7 @@ function ChatRoomTop() {
         </div>
       </div>
       <div className="ChatRoomTop__right">
-        <div className="right__username">문어햄</div>
+        <div className="right__username">{location.state.to}</div>
         <div className="right__icons">
           <Link to="/users">나가기</Link>
         </div>

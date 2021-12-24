@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchLinks from "./SearchLinks";
 import { auth } from "../../server/firebase";
-import { Database, getDatabase, onValue, push, ref, set } from "firebase/database";
+import { Database, getDatabase, onValue, ref, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 interface SignupFormState {

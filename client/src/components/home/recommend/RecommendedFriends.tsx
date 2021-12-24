@@ -22,7 +22,6 @@ function RecommendedFriends() {
       onValue(
         ref(db, "users/"),
         (snapshot) => {
-          console.log("asdas");
           if (snapshot.exists()) {
             const responseData = snapshot.val();
             const newFriends: IFriend[] = [];
