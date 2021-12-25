@@ -5,10 +5,6 @@ import { UserContext } from "../../../store/user";
 import User from "./User";
 import "./UserList.scss";
 
-interface Friend {
-  username: string;
-}
-
 function UserList() {
   const context = useContext(UserContext);
   const [friends, setFriends] = useState<string[]>([]);

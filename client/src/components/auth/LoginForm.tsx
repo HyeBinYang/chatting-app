@@ -51,12 +51,17 @@ function LoginForm() {
 
     const uid = userInfo?.user?.uid;
     const db = getDatabase();
-    onValue(ref(db, `users/${uid}/`), (snapshot) => {
-      if (snapshot.exists()) {
-        userInfoContext!.dispatch({ type: "CREATE_USER", payload: { username: snapshot.val().username } });
-        navigate("/users");
-      }
-    });
+    onValue(
+      ref(db, `users/${uid}/`),
+      (snapshot) => {
+        console.log("Weew");
+        if (snapshot.exists()) {
+          userInfoContext!.dispatch({ type: "CREATE_USER", payload: { username: snapshot.val().username } });
+          navigate("/users");
+        }
+      },
+      { onlyOnce: true }
+    );
   };
 
   return (
