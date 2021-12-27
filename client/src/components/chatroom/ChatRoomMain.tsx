@@ -3,14 +3,12 @@ import "./ChatRoom.scss";
 import ReceivedMessage from "./ReceivedMessage";
 import MyMessage from "./MyMessage";
 
-function ChatRoomMain() {
+function ChatRoomMain({ messages }: { messages: any[] }) {
   return (
     <div className="ChatRoomMain">
-      <ReceivedMessage />
-      <MyMessage />
-      <MyMessage />
-      <ReceivedMessage />
-      <MyMessage />
+      {messages.map((message) => (
+        <MyMessage />
+      ))}
     </div>
   );
 }

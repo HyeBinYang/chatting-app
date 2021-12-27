@@ -54,7 +54,6 @@ function LoginForm() {
     onValue(
       ref(db, `users/${uid}/`),
       (snapshot) => {
-        console.log("Weew");
         if (snapshot.exists()) {
           userInfoContext!.dispatch({ type: "CREATE_USER", payload: { username: snapshot.val().username } });
           navigate("/users");
