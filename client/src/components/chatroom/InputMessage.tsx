@@ -10,7 +10,6 @@ function InputMessage({
 }) {
   // const context = useContext();
   const [messageInput, setMessageInput] = useState("");
-  const [rid, setRid] = useState("");
 
   const inputMessage = (e: any) => {
     setMessageInput(e.target.value);
