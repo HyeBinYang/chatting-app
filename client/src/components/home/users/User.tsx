@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import "./UserList.scss";
-import { getDatabase, onValue, ref, remove } from "firebase/database";
+import { getDatabase, onValue, push, ref, remove } from "firebase/database";
 import { auth } from "../../../server/firebase";
+import { UserContext } from "../../../store/user";
 
 interface IProps {
   username: string;
@@ -12,10 +13,50 @@ interface IProps {
 }
 
 function User({ username, friends, setFriends }: IProps) {
+  const context = useContext(UserContext);
   const navigate = useNavigate();
 
-  const enterRoom = () => {
-    navigate("/room/123", { state: { to: username } });
+  const makeNewRoom = async () => {
+    const db = getDatabase();
+    const newRoom = await push(ref(db, "chatrooms/"), {
+      members: [context?.state.username, username],
+    });
+
+    navigate(`/room/${newRoom.key}`, { state: { to: username } });
+  };
+
+  const checkRoomExist = () => {
+    const db = getDatabase();
+
+    onValue(
+      ref(db, "chatrooms/"),
+      (snapshot) => {
+        let rid: string | null = "";
+        let isExist = false;
+
+        if (snapshot.exists()) {
+          snapshot.forEach((row) => {
+            const key = row.key;
+            const members = row.val().members;
+            if (members.includes(context?.state.username) && members.includes(username)) {
+              isExist = true;
+              rid = key;
+            }
+          });
+
+          if (!isExist) {
+            makeNewRoom();
+          } else {
+            navigate(`/room/${rid}`, { state: { to: username } });
+          }
+        }
+      },
+      { onlyOnce: true }
+    );
+  };
+
+  const onDoubleClickRoom = () => {
+    checkRoomExist();
   };
 
   const onClickDelete = () => {
@@ -39,7 +80,7 @@ function User({ username, friends, setFriends }: IProps) {
   };
 
   return (
-    <div onDoubleClick={enterRoom} className="UserList__user">
+    <div onDoubleClick={onDoubleClickRoom} className="UserList__user">
       <div className="user__container">
         <div className="user__photo">
           <img src="https://picsum.photos/200" alt="" />
