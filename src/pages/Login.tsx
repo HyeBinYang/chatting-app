@@ -6,10 +6,12 @@ import "../styles/auth.scss";
 
 const Login = () => {
   return (
-    <div className="login-container">
-      <Logo />
-      <LoginForm />
-      <LoginButtons />
+    <div className="login">
+      <div className="login-container">
+        <Logo />
+        <LoginForm />
+        <LoginButtons />
+      </div>
     </div>
   );
 };
