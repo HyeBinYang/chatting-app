@@ -6,8 +6,8 @@ import "../styles/auth.scss";
 
 const Login = () => {
   return (
-    <div className="login">
-      <div className="login-container">
+    <div className="auth">
+      <div className="auth-container">
         <Logo />
         <LoginForm />
         <LoginButtons />
