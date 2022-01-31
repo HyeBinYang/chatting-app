@@ -20,7 +20,8 @@
       margin: 25px 0;
       cursor: pointer;
 
-      &:hover {
+      &:hover,
+      &.active {
         color: black;
       }
     }
