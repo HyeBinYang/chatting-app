@@ -2,7 +2,7 @@
   display: flex;
 
   .sidebar {
-    width: 180px;
+    width: 150px;
     height: 100vh;
     padding: 30px 0;
     background: lightgray;
@@ -29,7 +29,7 @@
 
   .userlist,
   .chatroom-container {
-    padding-left: 180px;
+    padding-left: 150px;
     flex: 1;
 
     .header {

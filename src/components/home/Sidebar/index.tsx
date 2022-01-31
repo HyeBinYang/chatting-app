@@ -1,11 +1,19 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
 import { BsFillChatFill } from "react-icons/bs";
-import { Link, useLocation } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { auth } from "../../../api/firebase";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
+
+  const onClickSignOut = () => {
+    auth.signOut();
+    navigate("/login");
+  };
 
   return (
     <div className="sidebar">
@@ -28,6 +36,8 @@ const Sidebar = () => {
           <BsFillChatFill />
         </Link>
       )}
+
+      <MdLogout onClick={onClickSignOut} />
     </div>
   );
 };
