@@ -26,9 +26,9 @@
     }
   }
 
-  .userlist {
-    padding-left: 200px;
-    padding-right: 20px;
+  .userlist,
+  .chatroom-container {
+    padding-left: 180px;
     flex: 1;
 
     .header {
@@ -40,6 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 20px;
 
       .header-buttons {
         svg {
@@ -71,6 +72,7 @@
     .myinfo {
       margin-top: 100px;
       border-bottom: 1px solid lightgrey;
+      padding: 20px;
     }
 
     .users {
@@ -78,10 +80,64 @@
 
       span {
         color: lightgrey;
+        padding: 0 20px;
       }
 
       .user {
         margin: 20px 0;
+        padding: 10px 20px;
+        cursor: pointer;
+
+        &:hover {
+          background: lightgrey;
+        }
+      }
+    }
+
+    .chatrooms {
+      margin-top: 100px;
+
+      .chatroom {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        cursor: pointer;
+
+        .chatroom-left {
+          display: flex;
+
+          .chatroom-image {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+
+            img {
+              width: 100%;
+              border-radius: 40%;
+            }
+          }
+
+          .chatroom-desc {
+            h3 {
+              margin: 0;
+            }
+
+            p {
+              margin-top: 10px;
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        .chatroom-right {
+          .chatroom-info {
+          }
+        }
+
+        &:hover {
+          background: lightgrey;
+        }
       }
     }
   }

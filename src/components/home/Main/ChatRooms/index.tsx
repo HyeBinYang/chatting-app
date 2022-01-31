@@ -10,6 +10,15 @@ const ChatRooms = () => {
         <ChatRoom />
         <ChatRoom />
         <ChatRoom />
+        <ChatRoom />
+        <ChatRoom />
+        <ChatRoom />
+        <ChatRoom />
+        <ChatRoom />
+        <ChatRoom />
+        <ChatRoom />
+        <ChatRoom />
+        <ChatRoom />
       </div>
     </div>
   );
