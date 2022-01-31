@@ -1,7 +1,7 @@
-import { browserSessionPersistence, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../api/firebase";
+import { browserSessionPersistence, signInWithEmailAndPassword } from "firebase/auth";
 
 interface ILoginForm {
   email: string;

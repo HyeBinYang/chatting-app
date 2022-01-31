@@ -33,21 +33,41 @@
     flex: 1;
 
     .header {
+      width: calc(100% - 150px);
+      padding: 0 20px;
+      background: white;
       position: fixed;
       top: 0;
-      width: calc(100% - 220px);
-      height: 100px;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
 
-      .header-buttons {
-        svg {
-          width: 30px;
-          height: 30px;
-          cursor: pointer;
+      .header-contents {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .header-buttons {
+          svg {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 50%;
+            padding: 5px;
+
+            &:hover {
+              background: rgb(242, 241, 241);
+            }
+          }
+        }
+      }
+
+      .header-search {
+        width: 100%;
+
+        input {
+          width: 100%;
+          border: 5px solid skyblue;
+          outline: none;
+          padding: 5px;
+          font-size: 16px;
         }
       }
     }
@@ -68,10 +88,15 @@
           border-radius: 40%;
         }
       }
+
+      .profile-name {
+        font-size: 18px;
+        font-weight: 500;
+      }
     }
 
     .myinfo {
-      margin-top: 100px;
+      margin-top: 120px;
       border-bottom: 1px solid lightgrey;
       padding: 20px;
     }
@@ -79,9 +104,11 @@
     .users {
       margin-top: 30px;
 
-      span {
-        color: lightgrey;
+      .users-title {
+        font-size: 18px;
+        font-weight: 500;
         padding: 0 20px;
+        color: gray;
       }
 
       .user {
@@ -90,7 +117,7 @@
         cursor: pointer;
 
         &:hover {
-          background: lightgrey;
+          background: rgb(242, 241, 241);
         }
       }
     }
@@ -137,7 +164,7 @@
         }
 
         &:hover {
-          background: lightgrey;
+          background: rgb(242, 241, 241);
         }
       }
     }

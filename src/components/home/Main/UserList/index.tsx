@@ -9,7 +9,7 @@ const UserList = () => {
       <Header />
       <MyInfo />
       <div className="users">
-        <span>유저</span>
+        <span className="users-title">유저</span>
         <User />
         <User />
         <User />
