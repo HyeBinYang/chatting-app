@@ -1,7 +1,7 @@
 import React from "react";
 
-const UserList = () => {
+const ChatRoom = () => {
   return <div></div>;
 };
 
-export default UserList;
+export default ChatRoom;
