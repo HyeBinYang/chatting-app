@@ -8,12 +8,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="header-contents">
-        {currentPath === "/" ? <h1>유저 목록</h1> : <h1>채팅</h1>}
-        {/* <div className="header-buttons">
-          <AiOutlineSearch onClick={onClickSearchToggle} />
-        </div> */}
-      </div>
+      <div className="header-contents">{currentPath === "/" ? <h1>유저 목록</h1> : <h1>채팅</h1>}</div>
 
       {currentPath === "/" && (
         <div className="header-search">
