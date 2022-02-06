@@ -30,7 +30,7 @@ const SignupForm = () => {
       // 1. 파이어베이스에게 회원가입 요청
       const newUser = await createUserWithEmailAndPassword(auth, email, password);
       // 2. firestore에 기타 data 저장
-      await setDoc(doc(database, "Users", newUser.user.uid), { email, name });
+      await setDoc(doc(database, "Users", newUser.user.uid), { id: newUser.user.uid, email, name });
     } catch (err) {
       console.error(err);
     }

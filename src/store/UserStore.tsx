@@ -1,38 +1,38 @@
+import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import React, { createContext, useState } from "react";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
 
 interface UserContextProps {
   uid: string;
   name: string;
-  setUid: (uid: string) => void;
-  setName: (name: string) => void;
+  friends: User[];
+  setUid: React.Dispatch<React.SetStateAction<string>>;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  setFriends: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
 export const UserContext = createContext<UserContextProps>({
   uid: "",
   name: "",
+  friends: [],
   setUid: () => {},
   setName: () => {},
+  setFriends: () => {},
 });
 
-const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const setUid = (uid: string) => {
-    setUserState({ ...userState, uid: uid });
-  };
+const UserStore = ({ children }: { children: React.ReactNode }) => {
+  const [uid, setUid] = useState("");
+  const [name, setName] = useState("");
+  const [friends, setFriends] = useState<User[]>([]);
 
-  const setName = (name: string) => {
-    setUserState({ ...userState, name: name });
-  };
-
-  const initialUserState = {
-    uid: "",
-    name: "",
-    setUid: setUid,
-    setName: setName,
-  };
-
-  const [userState, setUserState] = useState(initialUserState);
-
-  return <UserContext.Provider value={userState}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ uid, name, friends, setUid, setName, setFriends }}>{children}</UserContext.Provider>
+  );
 };
 
-export default UserContextProvider;
+export default UserStore;

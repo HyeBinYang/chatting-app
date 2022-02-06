@@ -1,30 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { UserContext } from "../../../../store/UserStore";
 import Header from "../../Header";
 import MyInfo from "./MyInfo";
 import User from "./User";
 
 const UserList = () => {
+  const userContext = useContext(UserContext);
+
+  useEffect(() => {
+    console.log(userContext.friends);
+  }, []);
+
   return (
     <div className="userlist">
       <Header />
       <MyInfo />
       <div className="users">
         <span className="users-title">유저</span>
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
+
+        {userContext.friends.map((friend) => (
+          <User key={friend.id} friendInfo={friend} />
+        ))}
       </div>
     </div>
   );
