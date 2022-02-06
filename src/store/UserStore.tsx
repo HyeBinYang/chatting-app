@@ -1,4 +1,3 @@
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import React, { createContext, useState } from "react";
 
 interface User {

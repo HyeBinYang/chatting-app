@@ -7,17 +7,12 @@ import User from "./User";
 const UserList = () => {
   const userContext = useContext(UserContext);
 
-  useEffect(() => {
-    console.log(userContext.friends);
-  }, []);
-
   return (
     <div className="userlist">
       <Header />
       <MyInfo />
       <div className="users">
         <span className="users-title">유저</span>
-
         {userContext.friends.map((friend) => (
           <User key={friend.id} friendInfo={friend} />
         ))}
