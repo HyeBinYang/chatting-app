@@ -170,4 +170,30 @@
       }
     }
   }
+
+  .popup {
+    position: absolute;
+    border: 1px solid #000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .user__checkbox {
+      position: relative;
+
+      .checkbox {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        border-radius: 20px;
+        outline: none;
+      }
+
+      .checkbox:checked {
+        background-color: red;
+        border: none;
+      }
+    }
+  }
 }

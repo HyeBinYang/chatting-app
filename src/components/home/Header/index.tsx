@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { RiChatNewFill } from "react-icons/ri";
 import { useLocation } from "react-router-dom";
+import { PopupContext } from "../../../store/PopupStore";
 
 const Header = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const popupContext = useContext(PopupContext);
 
   return (
     <header className="header">
@@ -15,7 +17,7 @@ const Header = () => {
           <>
             <h1>채팅</h1>
             <div className="header-buttons">
-              <RiChatNewFill />
+              <RiChatNewFill onClick={() => popupContext.setInvitationPopup(true)} />
             </div>
           </>
         )}

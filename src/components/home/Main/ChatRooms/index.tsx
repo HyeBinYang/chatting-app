@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../../Header";
 import ChatRoom from "./ChatRoom";
+import InvitationPopup from "./InvitationPopup";
+import { PopupContext } from "../../../../store/PopupStore";
 
 const ChatRooms = () => {
+  const popupContext = useContext(PopupContext);
+
   return (
     <div className="chatroom-container">
       <Header />
@@ -20,6 +24,7 @@ const ChatRooms = () => {
         <ChatRoom />
         <ChatRoom />
       </div>
+      {popupContext.invitationPopup && <InvitationPopup />}
     </div>
   );
 };
