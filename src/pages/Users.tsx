@@ -47,6 +47,7 @@ const Users = () => {
       setLoading(false);
       unsubscribeAuth();
       userContext.setFriends([]);
+      userContext.setKeyword("");
     };
   }, []);
 

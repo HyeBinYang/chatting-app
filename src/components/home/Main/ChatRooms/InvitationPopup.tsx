@@ -44,8 +44,14 @@ const InvitationPopup = () => {
     return () => {
       unsubscribeAuth();
       userContext.setFriends([]);
+      userContext.setKeyword("");
+      setLoading(false);
     };
   }, []);
+
+  const onChangeSearchUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    userContext.setKeyword(e.target.value);
+  };
 
   return (
     <>
@@ -53,20 +59,28 @@ const InvitationPopup = () => {
         <div className="popup">
           <div className="popup__search">
             <h3>대화상대 선택</h3>
-            <input className="textbox" type="text" placeholder="이름으로 검색" />
+            <input
+              onChange={onChangeSearchUsername}
+              className="textbox"
+              type="text"
+              placeholder="이름으로 검색"
+              value={userContext.keyword}
+            />
           </div>
           <ul className="popup__userlist">
-            {userContext.friends.map((friend) => (
-              <li className="user" key={friend.id}>
-                <div className="user__info">
-                  <img src="https://picsum.photos/200" alt="" />
-                  <span className="user__name">{friend.name}</span>
-                </div>
-                <div className="user__checkbox">
-                  <input className="checkbox" type="checkbox" />
-                </div>
-              </li>
-            ))}
+            {userContext.friends
+              .filter((friend) => friend.name.includes(userContext.keyword))
+              .map((friend) => (
+                <li className="user" key={friend.id}>
+                  <div className="user__info">
+                    <img src="https://picsum.photos/200" alt="" />
+                    <span className="user__name">{friend.name}</span>
+                  </div>
+                  <div className="user__checkbox">
+                    <input className="checkbox" type="checkbox" />
+                  </div>
+                </li>
+              ))}
           </ul>
           <div className="popup__buttons">
             <button onClick={() => popupContext.setInvitationPopup(false)}>취소</button>
